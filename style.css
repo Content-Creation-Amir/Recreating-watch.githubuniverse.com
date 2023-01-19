@@ -1,231 +1,63 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap");
-
-:root {
-  --primary-bg-color: #19191a;
-  --card-border-radius: 10px;
-  --linear-bg-gradient-1: linear-gradient(
-    60deg,
-    orangered 10%,
-    orange,
-    gold,
-    greenyellow,
-    mediumspringgreen,
-    royalblue,
-    mediumblue,
-    indigo,
-    violet 90%
-  );
-  --linear-bg-gradient-2: linear-gradient(
-    60deg,
-    #d16ba5 10%,
-    #c777b9,
-    #ba83ca,
-    #aa8fd8,
-    #9a9ae1,
-    #8aa7ec,
-    #79b3f4,
-    #69bff8,
-    #52cffe,
-    #41dfff,
-    #46eefa,
-    #5ffbf1 90%
-  );
-  --linear-bg-gradient-3: linear-gradient(
-    60deg,
-    #007219 10%,
-    #2a8b30,
-    #46a546,
-    #60bf5d,
-    #7ada74,
-    #8be676,
-    #9df378,
-    #b0ff7a,
-    #c1ff65,
-    #d5fd4e,
-    #e9fb33,
-    #fff700 90%
-  );
-  --transition-time: all 1.5s cubic-bezier(0.6, 0.38, 0.33, 0.99);
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
 }
 
-body {
+#main {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
+  justify-content: center;
+}
+
+#container {
+  background-color: black;
   width: 100vw;
+  height: 60vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  background-color: var(--primary-bg-color);
 }
 
-p2 {
-  opacity: 0.7;
-}
-
-#title {
-  font-size: 80px;
-  color: white;
-  text-align: center;
-  background: var(--linear-bg-gradient-1);
-  letter-spacing: -5px;
-  color: transparent;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-}
-
-#image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -5;
-  height: 30%;
-  width: 100%;
-  object-fit: cover;
-  opacity: 0.4;
-  -webkit-mask-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(rgba(0, 0, 0, 1)),
-    to(rgba(0, 0, 0, 0))
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1),
-    var(--primary-bg-color)
-  );
-}
-
-/* A grid to place all the cards neatly in */
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
-  width: 80vw;
-}
-
-/* Just a wrapper for the card, that provides the required width and height to the card */
-.cardWrapper {
-  width: auto;
-  height: 250px;
-  background-color: var(--primary-bg-color);
-}
-
-/* By default, the card will have a lightgray border, which dissapears when being hovered  */
-.card {
-  height: 100%;
-  width: 100%;
-  backdrop-filter: blur(1px);
+.nav > a {
   position: relative;
-  border-radius: var(--card-border-radius);
-  border: solid 1px lightgray;
-  transition: var(--transition-time);
-}
-
-/* This is where the all the text and content will be sitting in */
-.cardContent {
-  padding: 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  position: relative;
-  height: 100%;
   color: white;
-  gap: 2rem;
-}
-
-/* 
- * These CSS classes will give different linear gradient's for every 1n, 2n and 3n cards. 
- * The background is applied to the ::before pseudo-element 
- */
-.cardWrapper:nth-child(1n) > .card::before {
-  background: var(--linear-bg-gradient-1);
-}
-.cardWrapper:nth-child(2n) > .card::before {
-  background: var(--linear-bg-gradient-2);
-}
-.cardWrapper:nth-child(3n) > .card::before {
-  background: var(--linear-bg-gradient-3);
-}
-
-.card::before {
-  content: "";
-  /* 
-   * By placing a psedo-element of the same size and the exact same position of the card, we simulate the card having a background
-   * It is importat to place it behind other elements (with z-index) such that it does not intefere with mouse events like hover and click
-  */
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: all ease-in-out 0.5s;
   left: 0px;
-  z-index: -1;
-
-  /* The clip path will set which part of the background will be shown. By default, no background is shown. */
-  clip-path: circle(0% at 10% 90%);
-
-  border-radius: var(--card-border-radius);
-  transition: var(--transition-time);
 }
 
-/* 
- * This pseudo-element will be sized and positioned such that we can will only see the edges of the card::before's bacground color 
- * This will create an illusion of a border.
- */
-.cardContent::before {
-  z-index: -1;
-  content: "";
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  background-color: var(--primary-bg-color);
+.nav > a::before {
+  scale: 0.8;
+  position: relative;
+  content: "👉";
+  transition: all ease-in-out 0.5s;
+  opacity: 0;
+}
+
+.nav > a:hover {
+  left: 20px;
+}
+
+.nav > a:hover::before {
+  content: "👉";
+  opacity: 1;
+}
+
+.nav > img {
+  height: 150px;
   position: absolute;
-  top: 2px;
-  left: 2px;
-  border-radius: var(--card-border-radius);
+  opacity: 0;
+  transition: all ease-in-out 0.5s;
+  right: 30vw;
 }
 
-/* The hover events will be for the cardWrapper since it is sitting at the top */
-.cardWrapper:hover .card {
-  /* We want the border to fade out, making way for the gradient */
-  border-color: transparent;
-}
-.cardWrapper:hover .card::before {
-  /* The clip path will expand, allowing the background to appear. Since we are using a circle, the background expands in a radial manner, starting from the 10% 90% position */
-  clip-path: circle(130% at 10% 90%);
-}
-
-@media only screen and (max-width: 1300px) {
-  #title {
-    font-size: 60px;
-  }
-  .cardGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .cardWrapper {
-    height: 225px;
-  }
-}
-
-@media only screen and (max-width: 950px) {
-  #title {
-    font-size: 50px;
-  }
-
-  .cardGrid {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
-  .cardWrapper {
-    height: 200px;
-  }
+.nav:hover > img {
+  opacity: 1;
 }
